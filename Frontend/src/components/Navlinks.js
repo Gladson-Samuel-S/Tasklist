@@ -1,10 +1,12 @@
+import { Link, links } from 'react-router-dom'
+
 const Navlinks = ({open}) => {
     return (
         
         <div className = {open ? 'header-info active' : 'header-info'} >
             <ul>
-                <li><a href="#">Completed</a> </li>
-                <li><a href="#">My lists</a></li>
+                <li><Link to="./about">About</Link> </li>
+                <li><Link to="./">My lists</Link></li>
             </ul>              
         </div>
     )
