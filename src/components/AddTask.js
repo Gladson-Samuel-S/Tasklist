@@ -1,9 +1,11 @@
 import { useState } from "react";
 
-const AddTask = ({ onAdd }) => {
+const AddTask = ({ onAdd, callEffect }) => {
   const [text, setText] = useState("");
   const [day, setDay] = useState("");
+  const [description, setDescription] = useState("");
   const [reminder, setReminder] = useState(false);
+  const [completed, setCompleted] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -13,10 +15,11 @@ const AddTask = ({ onAdd }) => {
       return;
     }
 
-    onAdd({ text, day, reminder });
+    onAdd({ text, day, description, reminder, completed });
 
     setText("");
     setDay("");
+    setDescription("");
     setReminder(false);
   };
 
@@ -34,10 +37,20 @@ const AddTask = ({ onAdd }) => {
       <div className="form-control">
         <label>Day and Time</label>
         <input
-          type="text"
+          type="date"
           placeholder="Add Day and Time"
           value={day}
           onChange={(e) => setDay(e.target.value)}
+        />
+      </div>
+      <div className="form-control">
+        <label>Description</label>
+        <input
+          type="text"
+          placeholder="Description"
+          maxLength="80"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </div>
       <div className="form-control-check">
@@ -50,7 +63,7 @@ const AddTask = ({ onAdd }) => {
         />
       </div>
 
-      <input className="btnadd btnadd-block" type="submit" value="Save Task" />
+      <button className="btnadd btnadd-block">Save Task</button>
     </form>
   );
 };

@@ -4,12 +4,10 @@ import Topbar from "./Topbar";
 import AddTask from "./AddTask";
 import firebase from "../firebase/firebase";
 
-const Main = () => {
-  const [showAddTask, setShowAddTask] = useState(false);
+const CompletedTasks = () => {
+  //   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const [execTwice, setExecTwice] = useState(false);
 
-  //Fetching Tasks from database
   useEffect(() => {
     //checking If it is unmounted or not
     let unmounted = false;
@@ -17,7 +15,7 @@ const Main = () => {
     const db = firebase.database().ref("Tasks");
     //Collecting data from database and setting the state
     db.orderByChild("completed")
-      .equalTo(false)
+      .equalTo(true)
       .on("value", (snapshot) => {
         const dbFetchTasks = snapshot.val();
         const dbTasks = [];
@@ -33,31 +31,27 @@ const Main = () => {
     return () => {
       unmounted = true;
     };
-  }, [execTwice]);
+  }, []);
 
   //Add Task
-  const addTask = (task) => {
-    //Database Reference
-    const dbAddTask = firebase.database().ref("Tasks");
-    const taskId = Math.floor(Math.random() * 10000) + 1;
-    const newTask = { taskId, ...task };
-    dbAddTask.push(newTask);
-    setExecTwice(!execTwice);
-    setTasks([...tasks, newTask]);
-    // window.location.reload();
-  };
+  //   const addTask = (task) => {
+  //     //Database Reference
+  //     const dbAddTask = firebase.database().ref("Tasks");
+  //     const taskId = Math.floor(Math.random() * 10000) + 1;
+  //     const newTask = { taskId, ...task };
+  //     dbAddTask.push(newTask);
+  //     setExecTwice(!execTwice);
+  //     setTasks([...tasks, newTask]);
+  //     // window.location.reload();
+  //   };
 
   console.log(tasks);
 
   //Delete Task
-  const deleteTask = (id, todo) => {
+  const deleteTask = (id) => {
     //Database Reference
-    // const db = firebase.database().ref("Tasks").child(id);
-    // db.remove();
     const db = firebase.database().ref("Tasks").child(id);
-    db.update({
-      completed: !todo.completed,
-    });
+    db.remove();
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
@@ -77,12 +71,14 @@ const Main = () => {
 
   return (
     <main>
-      <Topbar
+      {/* <Topbar
         onAdd={() => setShowAddTask(!showAddTask)}
         showAdd={showAddTask}
       />
 
-      {showAddTask && <AddTask onAdd={addTask} />}
+      {showAddTask && <AddTask onAdd={addTask} />} */}
+
+      <h3 style={{ marginBottom: "30px" }}>Completed Tasks</h3>
 
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
@@ -93,4 +89,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default CompletedTasks;
