@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import Tasks from "./Tasks";
-import Topbar from "./Topbar";
-import AddTask from "./AddTask";
 import firebase from "../firebase/firebase";
+import { useAuth } from "../contexts/AuthContext";
 
 const CompletedTasks = () => {
   //   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     //checking If it is unmounted or not
     let unmounted = false;
     //Database Reference
-    const db = firebase.database().ref("Tasks");
+    const db = firebase.database().ref(currentUser.uid);
     //Collecting data from database and setting the state
     db.orderByChild("completed")
       .equalTo(true)
@@ -45,12 +45,12 @@ const CompletedTasks = () => {
   //     // window.location.reload();
   //   };
 
-  console.log(tasks);
+  // console.log(tasks);
 
   //Delete Task
   const deleteTask = (id) => {
     //Database Reference
-    const db = firebase.database().ref("Tasks").child(id);
+    const db = firebase.database().ref(currentUser.uid).child(id);
     db.remove();
     setTasks(tasks.filter((task) => task.id !== id));
   };
@@ -58,7 +58,7 @@ const CompletedTasks = () => {
   //Toggle Reminder
   const toggleReminder = (id, todo) => {
     //Database Reference
-    const db = firebase.database().ref("Tasks").child(id);
+    const db = firebase.database().ref(currentUser.uid).child(id);
     db.update({
       reminder: !todo.reminder,
     });

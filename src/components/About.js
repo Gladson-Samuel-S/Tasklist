@@ -5,11 +5,12 @@ const About = () => {
     <div className="about">
       <h3 style={{ marginBottom: "20px" }}>About</h3>
       <p style={{ marginBottom: "20px" }}>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptas
-        numquam repudiandae, similique doloremque, quod possimus quidem illum,
-        architecto alias accusantium tempora rerum nobis. Suscipit sequi
-        exercitationem quod illum magni!
+        ➡️ Simple, clean and Responsive UI. Manage tasks and ideas that pop up
+        in your mind save it for future reference.
+        <br></br>
+        ➡️ Free up mental space , Get more done with the Todolist Web App
       </p>
+      <p className="author">Author: Gladson Samuel S</p>
       <Link to="./" style={{ textDecoration: "none" }}>
         Go Back
       </Link>
