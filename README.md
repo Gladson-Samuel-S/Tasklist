@@ -1,3 +1,27 @@
+# Todolist
+
+## ![React](./Assets/reactjs-fill.png) React + ![Firebase](./Assets/fire-line.png) Firebase
+
+### A simple clean Todo app
+
+<br>
+
+![HomePage](./Assets/Todolist-Web-App-Home-Page.png)
+
+<br>
+
+### Features :sparkles:
+
+:zap: **Fast made with react**
+
+:globe_with_meridians: **Cross-Platform**
+
+:clock1230: **minimalistic**
+
+# Demo
+
+[https://todolist-34e95.web.app/](https://todolist-34e95.web.app/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
