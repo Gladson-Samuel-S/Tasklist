@@ -6,7 +6,7 @@
 
 <br>
 
-![HomePage](./Assets/Todolist-Web-App-Home-Page.png)
+![HomePage](https://github.com/Gladson-Samuel-S/Tasklist/blob/master/Assets/Todolist-Web-App-Home-page.png)
 
 <br>
 
